@@ -19,3 +19,20 @@ After installing the requirements (check their documentation for any issues or d
 ```
 vagrant box add trusty64 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
 ```
+
+Fetch the submodules (Vagrant cookbooks) required for the setup...
+
+```
+git submodule init
+git submodule update
+```
+
+Start the vagrant (it will take around 10 to 15 minutes to install everything so feel free to take a walk or have a coffee meanwhile):
+
+```
+vagrant up
+```
+
+You can ignore the last errors regarding the connection with Solr, but please check if there's anything unusual in the logs.
+
+And that's it! Head to http://localhost:5000/ and start using CKAN :)
