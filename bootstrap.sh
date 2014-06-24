@@ -83,16 +83,26 @@ paster db init -c /etc/ckan/default/development.ini
 # Set permissions
 paster datastore set-permissions postgres -c /etc/ckan/default/development.ini
 
+# Installs supervisord and creates an init.d script
+cd && curl https://gist.githubusercontent.com/howthebodyworks/176149/raw/88d0d68c4af22a7474ad1d011659ea2d27e35b8d/supervisord.sh >> supervisord
+sed -i.bak 's/usr\/local\/bin\/supervisord/usr\/lib\/ckan\/default\/bin\/supervisord/' supervisord
+sudo mv supervisord /etc/init.d/supervisord
+sudo chmod +x /etc/init.d/supervisord
 sudo touch /etc/supervisord.conf
 sudo chmod o+w /etc/supervisord.conf
 /usr/lib/ckan/default/bin/echo_supervisord_conf > /etc/supervisord.conf
+sudo sed -i.bak 's/pidfile=\/tmp\/supervisord.pid/pidfile=\/var\/run\/supervisord.pid/' /etc/supervisord.conf
 
+# Configures CKAN as a supervisord process 
 echo "
 
 [program:ckan]
+autostart=true
 command=/usr/lib/ckan/default/bin/paster serve /etc/ckan/default/development.ini" >> /etc/supervisord.conf
 
 echo "All done, just adding CKAN process as a Supervisor daemon..."
+# Sets it to run on boot
 sudo chmod o-w /etc/supervisord.conf
-/usr/lib/ckan/default/bin/supervisord
+sudo update-rc.d supervisord defaults
+/etc/init.d/supervisord start
 echo "Provisioning complete! You can now access http://localhost:5000/ :)"
