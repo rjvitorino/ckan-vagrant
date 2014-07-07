@@ -100,6 +100,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "git"
     chef.add_recipe "java"
     chef.add_recipe "openssl"
+    chef.add_recipe "xml"
     chef.add_recipe "python"
     chef.add_recipe "postgresql::server"
   
