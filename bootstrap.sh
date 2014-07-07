@@ -81,7 +81,7 @@ cd /usr/lib/ckan/default/src/ckan
 paster db init -c /etc/ckan/default/development.ini
 
 # Set permissions
-paster datastore set-permissions postgres -c /etc/ckan/default/development.ini
+paster --plugin=ckan datastore set-permissions -c /etc/ckan/default/development.ini | sudo -u postgres psql --set ON_ERROR_STOP=1
 
 # Installs supervisord and creates an init.d script
 cd && curl https://gist.githubusercontent.com/howthebodyworks/176149/raw/88d0d68c4af22a7474ad1d011659ea2d27e35b8d/supervisord.sh >> supervisord

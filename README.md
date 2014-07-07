@@ -35,4 +35,4 @@ vagrant up
 
 You can ignore the last errors regarding the connection with Solr, but please check if there's anything unusual in the logs.
 
-And that's it! Head to http://localhost:5000/ and start using CKAN :)
+And that's it! Head to [http://localhost:5000/](http://localhost:5000/) and start using CKAN :)
