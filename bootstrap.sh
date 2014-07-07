@@ -74,6 +74,7 @@ sed -i.bak 's/ckan_default:pass/ckan_default:ckan2014/' development.ini
 sed -i.bak 's/datastore_default:pass/datastore_default:ckan2014/' development.ini
 sed -i.bak 's/ckan.plugins = stats text_preview recline_preview/ckan.plugins = stats text_preview recline_preview datastore/' development.ini
 sed -i.bak 's/#ckan.datastore/ckan.datastore/' development.ini
+sed -i.bak 's/ckan.site_url =/ckan.site_url = http:\/\/localhost:5000/' development.ini
 
 # Create database tables
 echo "Creating database tables for CKAN..."
@@ -99,6 +100,21 @@ echo "
 [program:ckan]
 autostart=true
 command=/usr/lib/ckan/default/bin/paster serve /etc/ckan/default/development.ini" >> /etc/supervisord.conf
+
+# Installs CKAN Datapusher
+echo "Installing Datapusher..."
+pip install -e 'git+https://github.com/ckan/datapusher.git#egg=datapusher'
+pip install -r /usr/lib/ckan/default/src/datapusher/requirements.txt
+
+cd /etc/ckan/default
+sed -i.bak 's/ckan.plugins = stats text_preview recline_preview datastore/ckan.plugins = stats text_preview recline_preview datastore datapusher/' development.ini
+sed -i.bak 's/#ckan.datapusher/ckan.datapusher/' development.ini
+
+echo "
+
+[program:datapusher]
+autostart=true
+command=/usr/lib/ckan/default/bin/python /usr/lib/ckan/default/src/datapusher/wsgi.py" >> /etc/supervisord.conf
 
 echo "All done, just adding CKAN process as a Supervisor daemon..."
 # Sets it to run on boot
