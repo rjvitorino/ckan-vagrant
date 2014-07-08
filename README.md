@@ -3,7 +3,9 @@
 This project contains the necessary files and guides to setup CKAN on a Vagrant box.
 The setup was based on the **[official guide](https://github.com/ckan/ckan/wiki/How-to-Install-CKAN-on-an-Ubuntu-10.04-Vagrant-Virtual-Machine)** on how to install CKAN on an Ubuntu Vagrant Virtual Machine. It installs latest CKAN release, with [DataStore](http://docs.ckan.org/en/latest/maintaining/datastore.html) and [DataPusher](http://docs.ckan.org/projects/datapusher/en/latest/) extensions.
 
-### DISCLAIMER
+---
+
+### Disclaimer
 
 This project is **not to be used on a production environment**! It was created to quickly provide a virtual environment to developers/managers that want to work with CKAN and don't need the hassle of configuring a server or installing all the required packages on their machine.
 
@@ -46,7 +48,7 @@ And that's it! Head to [http://localhost:5000/](http://localhost:5000/) and star
 ### Next steps
 
 - [Register](http://localhost:5000/user/register) an Account (you'll need the generated private API Key to use CKAN and CKAN DataStore APIs);
-- If you want **admin** access on CKAN with your account please run the following commands:
+- If you want **admin** access on CKAN with your account please run the following commands, replacing `<your_username>` with the username you chose when creating the account, of course:
 
 	```
 	vagrant ssh
@@ -55,10 +57,9 @@ And that's it! Head to [http://localhost:5000/](http://localhost:5000/) and star
 	logout
 	```
 
-Replacing `<your_username>` with the username you chose when creating the account, of course.
-
 ---
 
 ### Issues/Troubleshooting
 
-Feel free to contact me or create a new issue on this repository. I'll do my best to try and help!
+Feel free to contact me or create a new issue on this repository.
+I'll do my best to try and help!
