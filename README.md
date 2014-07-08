@@ -5,7 +5,7 @@ The setup was based on the **[official guide](https://github.com/ckan/ckan/wiki/
 
 ### DISCLAIMER
 
-This project is not to be used on a production environment. It was created to quickly provide a virtual environment to developers/managers that want to work with CKAN and don't need the hassle of configuring a server or installing all the required packages on their machine.
+This project is **not to be used on a production environment**! It was created to quickly provide a virtual environment to developers/managers that want to work with CKAN and don't need the hassle of configuring a server or installing all the required packages on their machine.
 
 ---
 
